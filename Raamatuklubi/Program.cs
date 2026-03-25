@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Raamatuklubi.Data;
+
 namespace Raamatuklubi
 {
     public class Program
@@ -8,6 +11,7 @@ namespace Raamatuklubi
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<RaamatuklubiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
