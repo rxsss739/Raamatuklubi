@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11612.150
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raamatuklubi", "Raamatuklubi.csproj", "{36C3728C-07B0-450A-A9EA-2690C6A80758}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raamatuklubi.ApplicationServices", "..\Raamatuklubi.ApplicationServices\Raamatuklubi.ApplicationServices.csproj", "{FA883DD6-A90A-1BB2-2975-A1040DFE07C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raamatuklubi.Core", "..\Raamatuklubi.Core\Raamatuklubi.Core.csproj", "{E8329D94-4794-9720-01FB-472C134789A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raamatuklubi.Data", "..\Raamatuklubi.Data\Raamatuklubi.Data.csproj", "{15318873-9A33-9111-A3DF-BCD0C6B953B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{36C3728C-07B0-450A-A9EA-2690C6A80758}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36C3728C-07B0-450A-A9EA-2690C6A80758}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36C3728C-07B0-450A-A9EA-2690C6A80758}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA883DD6-A90A-1BB2-2975-A1040DFE07C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA883DD6-A90A-1BB2-2975-A1040DFE07C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA883DD6-A90A-1BB2-2975-A1040DFE07C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA883DD6-A90A-1BB2-2975-A1040DFE07C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8329D94-4794-9720-01FB-472C134789A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8329D94-4794-9720-01FB-472C134789A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8329D94-4794-9720-01FB-472C134789A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8329D94-4794-9720-01FB-472C134789A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15318873-9A33-9111-A3DF-BCD0C6B953B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15318873-9A33-9111-A3DF-BCD0C6B953B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15318873-9A33-9111-A3DF-BCD0C6B953B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15318873-9A33-9111-A3DF-BCD0C6B953B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
