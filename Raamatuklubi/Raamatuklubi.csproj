@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Raamatuklubi.Core\Raamatuklubi.Core.csproj" />
     <ProjectReference Include="..\Raamatuklubi.Data\Raamatuklubi.Data.csproj" />
   </ItemGroup>
 
