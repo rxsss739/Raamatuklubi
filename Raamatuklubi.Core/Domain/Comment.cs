@@ -13,6 +13,6 @@ namespace Raamatuklubi.Core.Domain
         public Guid ID { get; set; }
         public Guid UserAddedID { get; set; }
         public Guid BookID { get; set; }
-        public string Text { get; set; }
+        public string Content { get; set; }
     }
 }

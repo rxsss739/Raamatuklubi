@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Raamatuklubi.Core.Domain;
 using Raamatuklubi.Data;
 
 namespace Raamatuklubi
@@ -12,6 +15,16 @@ namespace Raamatuklubi
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<RaamatuklubiDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequiredLength = 8;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            })
+                .AddEntityFrameworkStores<RaamatuklubiDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 
