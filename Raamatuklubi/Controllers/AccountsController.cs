@@ -57,5 +57,44 @@ namespace Raamatuklubi.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login()
+        {
+            LoginViewModel vm = new();
+            return View(vm);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                bool validPassword = await _userManager.CheckPasswordAsync(user, model.Password);
+                {
+                    ModelState.AddModelError("", "Sisselogimine ebaõnnestus, vale parool");
+                }
+
+                if (result.IsLockedOut)
+                {
+                    return View("AccountLocked");
+                }
+                ModelState.AddModelError("", "Sisselogimine ebaõnnestus, kontakteeru administraatoriga");
+            }
+
+            return View(model);
+        }
+
     }
 }
