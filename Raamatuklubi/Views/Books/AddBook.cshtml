@@ -1,0 +1,26 @@
+﻿@model Raamatuklubi.Models.Books.BookCreateViewModel
+
+<h1>Add a new book</h1>
+
+<div>
+    <form method="post">
+        <input asp-for="ID" type="hidden"/>
+        <input asp-for="UserAddedID" type="hidden"/>
+
+        <div>
+            <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Title"/>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="Year" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Year"/>
+            </div>
+        </div>
+
+        <input asp-action="AddBook" asp-controller="Books" type="submit" class="btn btn-primary" value="Add"/>
+    </form>
+</div>
