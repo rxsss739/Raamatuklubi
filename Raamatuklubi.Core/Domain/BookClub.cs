@@ -17,6 +17,6 @@ namespace Raamatuklubi.Core.Domain
         public DateTime EndTime { get; set; }
         public string Location { get; set; }
         public string Organizermember { get; set; }
-        public List<string> Attendees { get; set; }
+        public List<string> Attendees { get; set; } = new List<string> { };
     }
 }
