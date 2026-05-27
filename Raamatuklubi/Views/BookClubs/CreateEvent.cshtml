@@ -1,0 +1,46 @@
+﻿@model Raamatuklubi.Models.BookClubs.CreateEventViewModel
+
+<h1>Add a new event</h1>
+
+<div>
+    <form method="post">
+
+        <div>
+            <label asp-for="EventName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EventName" />
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="EventDescription" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EventDescription" />
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="StartTime" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="StartTime" />
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="EndTime" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="EndTime" />
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="Location" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Location" />
+            </div>
+        </div>
+
+
+        <input asp-action="CreateEvent" asp-controller="BookClubs" type="submit" class="btn btn-primary" value="Create" />
+    </form>
+</div>
