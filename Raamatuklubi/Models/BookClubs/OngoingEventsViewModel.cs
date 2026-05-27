@@ -2,8 +2,10 @@
 {
     public class OngoingEventsViewModel
     {
+        public Guid Id { get; set; }
         public string EventName { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public List<string> Attendees { get; set; }
     }
 }

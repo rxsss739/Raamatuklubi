@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Raamatuklubi.Core.Domain;
 using Raamatuklubi.Data;
 using Raamatuklubi.Models.BookClubs;
+using System.Security.Claims;
 
 namespace Raamatuklubi.Controllers
 {
@@ -22,9 +24,11 @@ namespace Raamatuklubi.Controllers
         {
             var result = _context.BookClubs.Select(x => new OngoingEventsViewModel
             {
+                Id = x.Id,
                 EventName = x.EventName,
                 StartTime = x.StartTime,
-                EndTime = x.EndTime
+                EndTime = x.EndTime,
+                Attendees = x.Attendees
             })
                 .OrderByDescending(x => x.StartTime);
 
@@ -55,6 +59,26 @@ namespace Raamatuklubi.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction("OngoingEvents", "BookClubs");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> JoinEvent(Guid id)
+        {
+
+            var bookClubEvent = await _context.BookClubs
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (bookClubEvent == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            bookClubEvent.Attendees.Add(user.Id.ToString());
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(OngoingEvents));
         }
     }
 }
