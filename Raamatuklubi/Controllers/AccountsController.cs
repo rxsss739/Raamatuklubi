@@ -32,6 +32,7 @@ namespace Raamatuklubi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
