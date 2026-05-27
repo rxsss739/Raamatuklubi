@@ -15,5 +15,6 @@ namespace Raamatuklubi.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<BookClub> BookClubs { get; set; }
     }
 }

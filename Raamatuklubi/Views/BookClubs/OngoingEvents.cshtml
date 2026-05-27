@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Raamatuklubi.Models.BookClubs.OngoingEventsViewModel>
+
+<h1>All ongoing events</h1>
+
+<form method="get">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Event name</th>
+				<th scope="col">Event start date</th>
+				<th scope="col">Event end date</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ongoingevent in Model)
+			{
+				<tr>
+					<td>@ongoingevent.EventName</td>
+					<td>@ongoingevent.StartTime</td>
+					<td>@ongoingevent.EndTime</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</form>
