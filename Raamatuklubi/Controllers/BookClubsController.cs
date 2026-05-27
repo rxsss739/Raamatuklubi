@@ -21,7 +21,8 @@ namespace Raamatuklubi.Controllers
                 EventName = x.EventName,
                 StartTime = x.StartTime,
                 EndTime = x.EndTime
-            });
+            })
+                .OrderByDescending(x => x.StartTime);
 
             return View("OngoingEvents", result);
         }
