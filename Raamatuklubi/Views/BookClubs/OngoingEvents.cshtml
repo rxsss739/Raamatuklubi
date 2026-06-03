@@ -7,40 +7,106 @@
 	var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 }
 
+<style>
+	.event-card {
+		width: 100%;
+		height: 130px;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,0 45,0 35,100 0,100' fill='%23be4542'/%3E%3Cpolygon points='35,0 80,0 70,100 25,100' fill='%23000'/%3E%3Cpolygon points='80,0 100,0 100,100 70,100' fill='%23be4542'/%3E%3Crect x='0' y='98' width='100' height='2' fill='white'/%3E%3C/svg%3E");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		margin: 40px;
+		display: flex;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+	
+		.left-section {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			padding: 10px 20px;
+			width: 50%;
+			color: white;
+		}
+
+			.left-section h3 {
+				font-weight: bold;
+				font-size: 30px;
+			}
+
+			.time-section  {
+				margin-top: auto;
+				margin-left: 123px;
+				font-weight: bold;
+			}
+
+		.right-section {
+			width: 150px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-start;
+			font-weight: bold;
+			text-decoration: none;
+			color: white;
+		}
+
+			.right-section h3 {
+				font-size: 25px;
+			}
+
+			.right-section p {
+				font-size: 50px;
+			}
+		
+	a {
+		text-decoration: none;
+		color: white;
+	}
+
+</style>
+
 <h1>All ongoing events</h1>
 
 <a asp-action="CreateEvent" asp-controller="BookClubs" class="btn btn-primary">Create your own event</a>
 
+<br />
+<br />
 <form method="get">
 
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th scope="col">Event name</th>
-				<th scope="col">Event start date</th>
-				<th scope="col">Event end date</th>
-				<th scope="col">Options</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var ongoingevent in Model)
+	@foreach (var ongoingevent in Model)
+	{
+
+		<div class="event-card">
+
+			<div class="left-section">
+				<h3>@ongoingevent.EventName</h3><br />
+				<p>@ongoingevent.EventDescription</p>
+				<div class="time-section">
+					<p>From @ongoingevent.StartTime - To @ongoingevent.EndTime</p>
+				</div>
+			</div>
+					
+					
+			@if (ongoingevent.Attendees.Contains(currentUserId))
 			{
-				<tr>
-					<td>@ongoingevent.EventName</td>
-					<td>@ongoingevent.StartTime</td>
-					<td>@ongoingevent.EndTime</td>
-					<td>
-					@if (ongoingevent.Attendees.Contains(currentUserId))
-					{
-						<a asp-action="UnjoinEvent" asp-controller="BookClubs" class="btn btn-danger" asp-route-id="@ongoingevent.Id">Unjoin from event</a>
-					}
-					else
-					{
-						<a asp-action="JoinEvent" asp-controller="BookClubs" class="btn btn-primary" asp-route-id="@ongoingevent.Id">Join event</a>
-					}
-					</td>
-				</tr>
+				<a asp-action="UnjoinEvent" asp-controller="BookClubs" asp-route-id="@ongoingevent.Id">
+					<div class="right-section">
+						<p>-</p>
+						<h3>Unjoin</h3>
+					</div>
+				</a>
 			}
-		</tbody>
-	</table>
+			else
+			{
+				<a asp-action="JoinEvent" asp-controller="BookClubs" asp-route-id="@ongoingevent.Id">
+					<div class="right-section">
+						<p>+</p>
+						<h3>Join</h3>
+					</div>
+				</a>
+			}
+		</div>
+					
+	}
 </form>

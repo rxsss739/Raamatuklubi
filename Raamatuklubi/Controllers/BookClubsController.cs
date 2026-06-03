@@ -26,6 +26,7 @@ namespace Raamatuklubi.Controllers
             {
                 Id = x.Id,
                 EventName = x.EventName,
+                EventDescription = x.EventDescription,
                 StartTime = x.StartTime,
                 EndTime = x.EndTime,
                 Attendees = x.Attendees
