@@ -1,46 +1,102 @@
 ﻿@model Raamatuklubi.Models.BookClubs.CreateEventViewModel
 
-<h1>Add a new event</h1>
+<style>
+	.field-row {
+		width: 100%;
+		margin-bottom: 20px;
+		position: relative;
+		background: #d9d9d9;
+	}
 
-<div>
-    <form method="post">
+		.field-row input, .field-row textarea {
+			width: 100%;
+			height: 44px;
+			background: transparent;
+			border: none;
+			outline: none;
+			padding-left: 155px;
+			font-size: 15px;
+			box-sizing: border-box;
+		}
 
-        <div>
-            <label asp-for="EventName" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="EventName" />
-            </div>
-        </div>
+		.field-row textarea {
+			height: 160px;
+			padding-top: 12px;
+			resize: none;
+		}
 
-        <div>
-            <label asp-for="EventDescription" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="EventDescription" />
-            </div>
-        </div>
+	.field-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		display: flex;
+		align-items: flex-start;
+		padding: 10px 30px 10px 12px;
+		background: #be4542;
+		color: white;
+		font-weight: bold;
+		clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+	}
 
-        <div>
-            <label asp-for="StartTime" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="StartTime" />
-            </div>
-        </div>
+	.field-hint {
+		font-size: 13px;
+		color: #aaa;
+		margin: 4px 0 0 2px;
+	}
 
-        <div>
-            <label asp-for="EndTime" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="EndTime" />
-            </div>
-        </div>
+	.two-col {
+		display: flex;
+		gap: 20px;
+	}
 
-        <div>
-            <label asp-for="Location" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <input asp-for="Location" />
-            </div>
-        </div>
+		.two-col .field-wrap {
+			flex: 1;
+		}
+</style>
 
+<h1><b>Host</b> Event</h1>
 
-        <input asp-action="CreateEvent" asp-controller="BookClubs" type="submit" class="btn btn-primary" value="Create" />
-    </form>
-</div>
+<br />
+
+<form method="post">
+
+	<div class="field-row">
+		<span class="field-label">Event name:</span>
+		<input asp-for="EventName" />
+	</div>
+	<p class="field-hint">Give your event a name, field is required.</p>
+
+	<div class="field-row">
+		<span class="field-label">Description:</span>
+		<textarea asp-for="EventDescription"></textarea>
+	</div>
+	<p class="field-hint">What this event is about, field is required.</p>
+
+	<div class="two-col">
+		<div class="field-wrap">
+			<div class="field-row">
+				<span class="field-label">Starts at:</span>
+				<input asp-for="StartTime" />
+			</div>
+			<p class="field-hint">What time and day it starts at, required.</p>
+		</div>
+		<div class="field-wrap">
+			<div class="field-row">
+				<span class="field-label">Runs until:</span>
+				<input asp-for="EndTime" />
+			</div>
+			<p class="field-hint">When the event ends, required.</p>
+		</div>
+	</div>
+
+	<div class="field-row">
+		<span class="field-label">Location:</span>
+		<input asp-for="Location" />
+	</div>
+	<p class="field-hint">Where does your event take place, and how to get there, required.</p>
+
+	<br />
+	<input asp-action="CreateEvent" asp-controller="BookClubs" type="submit" class="btn btn-primary" value="Create" />
+
+</form>
