@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Raamatuklubi.Core.Domain;
@@ -80,6 +81,32 @@ namespace Raamatuklubi.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(OngoingEvents));
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> EventDetails(Guid id)
+        {
+            var bookClubEvent = await _context.BookClubs
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (bookClubEvent == null)
+            {
+                return NotFound();
+            }
+
+            EventDetailsViewModel eventdetailsviewmodel = new EventDetailsViewModel() 
+            {
+                Id = bookClubEvent.Id,
+                EventName = bookClubEvent.EventName,
+                EventDescription = bookClubEvent.EventDescription,
+                Location = bookClubEvent.Location,
+                StartTime = bookClubEvent.StartTime,
+                EndTime = bookClubEvent.EndTime,
+                Attendees = bookClubEvent.Attendees
+            };
+
+            return View("EventDetails", eventdetailsviewmodel);
         }
     }
 }

@@ -1,0 +1,146 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@model Raamatuklubi.Models.BookClubs.EventDetailsViewModel
+@inject UserManager<Raamatuklubi.Core.Domain.ApplicationUser> userManager
+
+@{
+	var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
+
+<style>
+	.details-layout {
+		display: flex;
+		gap: 30px;
+		margin-top: 30px;
+	}
+
+	.details-left {
+		flex: 2;
+		position: relative;
+		background: #d9d9d9;
+		min-height: 400px;
+		padding: 50px 15px 60px 15px;
+	}
+
+	.details-right {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.field-row {
+		position: relative;
+		background: #d9d9d9;
+		height: 44px;
+		display: flex;
+		align-items: center;
+	}
+
+		.field-row p {
+			margin: 0;
+			padding-left: 140px;
+			font-size: 15px;
+		}
+
+	.field-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		padding: 0 30px 0 12px;
+		background: #be4542;
+		color: white;
+		font-weight: bold;
+		clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+	}
+
+	.top-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 8px 30px 8px 12px;
+		background: #be4542;
+		color: white;
+		font-weight: bold;
+		clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+	}
+
+	.corner-label {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 8px 30px 8px 12px;
+		background: #be4542;
+		color: white;
+		font-weight: bold;
+		clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+	}
+
+	.description-text {
+		font-size: 15px;
+	}
+
+	.join-btn {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: #be4542;
+		color: white;
+		padding: 0 20px;
+		height: 55px;
+		font-size: 18px;
+		font-weight: bold;
+		text-decoration: none;
+		cursor: pointer;
+		border: none;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+		.join-btn span {
+			font-size: 35px;
+			font-weight: bold;
+		}
+</style>
+
+<h1><b>Event</b> @Model.EventName</h1>
+
+<div class="details-layout">
+
+	<div class="details-left">
+		<span class="top-label">Description:</span>
+		<p class="description-text">@Model.EventDescription</p>
+		<span class="corner-label">Location: @Model.Location</span>
+	</div>
+
+	<div class="details-right">
+
+		<div class="field-row">
+			<span class="field-label">Starts at:</span>
+			<p>@Model.StartTime</p>
+		</div>
+
+		<div class="field-row">
+			<span class="field-label">Runs until:</span>
+			<p>@Model.EndTime</p>
+		</div>
+
+		@if (Model.Attendees.Contains(currentUserId))
+		{
+			<a asp-action="UnjoinEvent" asp-controller="BookClubs" asp-route-id="@Model.Id" class="join-btn">
+				Leave the event <span>-</span>
+			</a>
+		}
+		else
+		{
+			<a asp-action="JoinEvent" asp-controller="BookClubs" asp-route-id="@Model.Id" class="join-btn">
+				Join the event <span>+</span>
+			</a>
+		}
+
+	</div>
+
+</div>
